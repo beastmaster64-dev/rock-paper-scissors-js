@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <script>
+    // Your JavaScript goes here!
+    console.log("code start");
+
+    function getComputerChoice(){
+        const num = Math.random();
+        if(num < 1/3){
+            return "rock";
+        }
+        else if(num < 2/3){
+            return "paper";
+        }
+        else{
+            return "scissors";
+        }
+    }
+
+    // console.log(getComputerChoice());
+
+    function getHumanChoice(){
+        let sign = prompt("Rock, Paper or Scissors?");
+
+        return sign.toLowerCase();
+    }
+    
+    let humanScore = 0;
+    let compScore = 0;
+    
+
+    function playRound(){
+    
+        const humanChoice = getHumanChoice();
+        const computerChoice = getComputerChoice();
+
+        if(humanChoice == computerChoice){
+            return "The round is a tie";
+        }
+
+        if(humanChoice == "rock"){
+            if(computerChoice == "paper"){
+                compScore++;
+                return `${computerChoice} beats ${humanChoice}`;
+            }
+            else{
+                humanScore++;
+                return `${humanChoice} beats ${computerChoice}`;
+            }
+        }
+        else if(humanChoice == "paper"){
+            if(computerChoice == "scissors"){
+                compScore++;
+                return `${computerChoice} beats ${humanChoice}`;
+            }
+            else{
+                humanScore++;
+                return `${humanChoice} beats ${computerChoice}`;
+            }
+        }
+        else{ //scissors
+            if(computerChoice == "rock"){
+                compScore++;
+                return `${computerChoice} beats ${humanChoice}`;
+            }
+            else{
+                humanScore++;
+                return `${humanChoice} beats ${computerChoice}`;
+            }
+        }
+    }
+
+    function playGame(){
+
+
+        //play the game 5 times
+        for(let i=1;i<=5;i++){
+            let round = playRound(humanScore,compScore);
+            console.log(round);
+            
+        }
+        
+        if(humanScore > compScore){
+            return "You win";
+        }
+        else if (compScore > humanScore){
+            return "Computer wins";
+        }
+        else{
+            return "Tie";
+        }
+    }
+
+    console.log(playGame());
+    console.log(`You - ${humanScore} | Computer - ${compScore}`);
+    
+
+  </script>
+
+</body>
+</html>
