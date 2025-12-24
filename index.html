@@ -6,103 +6,107 @@
   <title>Document</title>
 </head>
 <body>
+   
+    <h1>Rock Paper Scissors</h1>
 
-  <script>
-    // Your JavaScript goes here!
-    console.log("code start");
+    <h2>Choose your play</h2>
 
-    function getComputerChoice(){
-        const num = Math.random();
-        if(num < 1/3){
-            return "rock";
-        }
-        else if(num < 2/3){
-            return "paper";
-        }
-        else{
-            return "scissors";
-        }
-    }
+    <div id = "wrapper">
+        <button id = "rock">Rock</button>
+        <button id = "paper">Paper</button>
+        <button id = "scissors">Scissors</button>
+    </div>
 
-    // console.log(getComputerChoice());
+    <script>
+        
+        console.log("code start");
 
-    function getHumanChoice(){
-        let sign = prompt("Rock, Paper or Scissors?");
-
-        return sign.toLowerCase();
-    }
-    
-    let humanScore = 0;
-    let compScore = 0;
-    
-
-    function playRound(){
-    
-        const humanChoice = getHumanChoice();
-        const computerChoice = getComputerChoice();
-
-        if(humanChoice == computerChoice){
-            return "The round is a tie";
-        }
-
-        if(humanChoice == "rock"){
-            if(computerChoice == "paper"){
-                compScore++;
-                return `${computerChoice} beats ${humanChoice}`;
+        function getComputerChoice(){
+            const num = Math.random();
+            if(num < 1/3){
+                return "rock";
+            }
+            else if(num < 2/3){
+                return "paper";
             }
             else{
-                humanScore++;
-                return `${humanChoice} beats ${computerChoice}`;
+                return "scissors";
             }
         }
-        else if(humanChoice == "paper"){
-            if(computerChoice == "scissors"){
-                compScore++;
-                return `${computerChoice} beats ${humanChoice}`;
-            }
-            else{
-                humanScore++;
-                return `${humanChoice} beats ${computerChoice}`;
-            }
-        }
-        else{ //scissors
-            if(computerChoice == "rock"){
-                compScore++;
-                return `${computerChoice} beats ${humanChoice}`;
-            }
-            else{
-                humanScore++;
-                return `${humanChoice} beats ${computerChoice}`;
-            }
-        }
-    }
 
-    function playGame(){
+        // console.log(getComputerChoice());
 
+        function getHumanChoice(){
+            let sign = prompt("Rock, Paper or Scissors?");
 
-        //play the game 5 times
-        for(let i=1;i<=5;i++){
-            let round = playRound(humanScore,compScore);
-            console.log(round);
-            
+            return sign.toLowerCase();
         }
         
-        if(humanScore > compScore){
-            return "You win";
-        }
-        else if (compScore > humanScore){
-            return "Computer wins";
-        }
-        else{
-            return "Tie";
-        }
-    }
+        let humanScore = 0;
+        let compScore = 0;
+        
 
-    console.log(playGame());
-    console.log(`You - ${humanScore} | Computer - ${compScore}`);
-    
+        function playRound(){
+        
+            const humanChoice = getHumanChoice();
+            const computerChoice = getComputerChoice();
 
-  </script>
+            if(humanChoice == computerChoice){
+                return "The round is a tie";
+            }
+
+            if(humanChoice == "rock"){
+                if(computerChoice == "paper"){
+                    compScore++;
+                    return `${computerChoice} beats ${humanChoice}`;
+                }
+                else{
+                    humanScore++;
+                    return `${humanChoice} beats ${computerChoice}`;
+                }
+            }
+            else if(humanChoice == "paper"){
+                if(computerChoice == "scissors"){
+                    compScore++;
+                    return `${computerChoice} beats ${humanChoice}`;
+                }
+                else{
+                    humanScore++;
+                    return `${humanChoice} beats ${computerChoice}`;
+                }
+            }
+            else{ //scissors
+                if(computerChoice == "rock"){
+                    compScore++;
+                    return `${computerChoice} beats ${humanChoice}`;
+                }
+                else{
+                    humanScore++;
+                    return `${humanChoice} beats ${computerChoice}`;
+                }
+            }
+        }
+
+        const wrapper = document.getElementById("wrapper");
+        
+
+        wrapper.addEventListener('click', (event) => {
+
+            event.preventDefault();
+            const isButton = event.target.nodeName === 'BUTTON';
+            if(isButton){
+                console.log('Button clikced', event.target.id);
+            }
+
+        });
+
+
+        
+        
+
+    </script>
+
+
 
 </body>
 </html>
