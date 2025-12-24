@@ -9,7 +9,7 @@
    
     <h1>Rock Paper Scissors</h1>
 
-    <h2>Choose your play</h2>
+    <h2>Choose your tool</h2>
 
     <div id = "wrapper">
         <button id = "rock">Rock</button>
@@ -45,11 +45,11 @@
         let humanScore = 0;
         let compScore = 0;
         
-
-        function playRound(){
         
-            const humanChoice = getHumanChoice();
-            const computerChoice = getComputerChoice();
+        
+
+        function playRound(humanChoice, computerChoice){
+        
 
             if(humanChoice == computerChoice){
                 return "The round is a tie";
@@ -87,7 +87,7 @@
             }
         }
 
-        const wrapper = document.getElementById("wrapper");
+        
         
 
         wrapper.addEventListener('click', (event) => {
@@ -95,7 +95,44 @@
             event.preventDefault();
             const isButton = event.target.nodeName === 'BUTTON';
             if(isButton){
-                console.log('Button clikced', event.target.id);
+                
+                const wrapper = document.getElementById("wrapper");
+    
+                const newDiv = document.createElement('div');
+                const scores = document.createTextNode(`You : ${humanScore} | Computer : ${compScore}`);
+
+                newDiv.appendChild(scores);
+
+                wrapper.after(newDiv);
+            
+                if(humanScore < 5 && compScore < 5){
+                
+                    const playerChoice = event.target.id;
+                    const compChoice = getComputerChoice();
+                    const round = playRound(playerChoice, compChoice);
+
+                
+                }
+
+                //finish the game.
+                else{
+
+                    const resultDiv = document.createElement('div');
+                    let result = "";
+                    if(humanScore > compScore){
+                        result = document.createTextNode("You win!");
+                    }
+                    else if(compScore > humanScore){
+                        result = document.createTextNode("You lose :(");
+                    }
+                    else{
+                        result = document.createTextNode("It's a tie :|");
+                    }
+                    resultDiv.appendChild(result);
+                    newDiv.remove();
+                    wrapper.after(resultDiv);
+
+                }
             }
 
         });
